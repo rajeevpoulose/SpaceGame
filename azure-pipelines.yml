@@ -15,6 +15,16 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+-task:UseDotNet@2
+displayName:'Use.NetCore SDK'
+inputs:
+    packageType:SDK
+    version:3.1.300 
+
+-script:'echo "$(Build.DefinitionName),$(Build.BuildId),$(Build.BuildNumber)" > BuildInfo.txt'
+displayName:'Write Build info'
+WorkingDirectory:GITHubSpaceGame\wwwroot
+
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
