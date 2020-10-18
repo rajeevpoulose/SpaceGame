@@ -34,7 +34,7 @@ steps:
     command: 'test'
     arguments: '--no-build --configuration $(buildConfiguration)'
     publishTestResults: true
-    projects: '**/*.Tests.csproj'
+    projects: '**/*.csproj'
 
 - template: template/build.yml
   parameters:
