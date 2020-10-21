@@ -60,7 +60,7 @@ steps:
   parameters:
     buildConfiguration: 'Release'
 
- - task: WhiteSource Bolt@20
+- task: WhiteSource Bolt@20
   displayName: 'Run WhiteSource Bolt'
 
 - task: PublishBuildArtifacts@1
