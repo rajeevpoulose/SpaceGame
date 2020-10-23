@@ -5,6 +5,12 @@
 
 trigger:
 - '*'
+stages:
+- stage: 'Build'
+  displayName: 'Build the web application'
+  jobs: 
+  - job: 'Build'
+    displayName: 'Build job'
 
 pool:
   vmImage: 'windows-latest'
