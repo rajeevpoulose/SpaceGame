@@ -10,3 +10,9 @@ steps:
     publishWebProjects: false
     arguments: '--no-build --configuration ${{parameters.buildConfiguration}} --output $(Build.ArtifactStagingDirectory)/${{parameters.buildConfiguration}}'
     zipAfterPublish: true
+
+
+az appservice plan create \
+  --name space-game-asp \
+  --resource-group pace-game-rg \
+  --sku B1

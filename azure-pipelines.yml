@@ -7,6 +7,7 @@ trigger:
 - '*'
 variables:
   buildConfiguration: 'Release'
+  releaseBranchName: 'Release'
 
 stages:
 - stage: 'Build'
@@ -61,9 +62,15 @@ stages:
       displayName: 'Publish Artifact: drop'
       condition: succeeded()
 
-- stage: 'Deploy'
-  displayName: 'Deploy the web application'
+- stage: 'DEV'
+  displayName: 'Deploy to DEV'
   dependsOn: Build
+    condition: |
+    and
+    (
+      succeeded(),
+      eq(variables['Build.SourceBranchName'], variables['releaseBranchName'])
+    )
   jobs:
   - deployment: Deploy
     pool:
@@ -81,5 +88,5 @@ stages:
             displayName: 'Azure App Service Deploy: website'
             inputs:
               azureSubscription: 'ResourceManager-SpaceGame'
-              appName: '$(WebAppName)'
+              appName: '$(WebAppNameDev)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/GITHubSpaceGame.zip'
